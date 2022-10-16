@@ -1,0 +1,3 @@
+{
+  "query": "mutation {addPerson(input: {number: 23141 name: \"lol\" }) { id number name } }"
+}

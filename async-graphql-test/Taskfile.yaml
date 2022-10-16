@@ -1,0 +1,21 @@
+version: "3"
+
+tasks:
+  lint:
+    cmds:
+      - cargo clippy
+  format:
+    cmds:
+      - cargo fmt
+  build:
+    cmds:
+      - cargo build --release
+  dev:
+    cmds:
+      - cargo watch -x run
+  run:
+    cmds:
+      - cargo run --release
+  setup:
+    cmds:
+      - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

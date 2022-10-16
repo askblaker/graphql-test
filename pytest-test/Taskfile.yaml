@@ -1,0 +1,30 @@
+version: "3"
+
+tasks:
+  install:
+    cmds:
+      - poetry install
+  lint:
+    cmds:
+      - poetry run flake8 .
+  format:
+    cmds:
+      - poetry run black .
+  run:
+    cmds:
+      - poetry run pytest
+  setup:
+    cmds:
+      - curl -sSL https://install.python-poetry.org | python3 -
+  ariadne:
+    cmds:
+      - export TEST_URL=http://localhost:8000/graph && poetry run pytest
+  async-graphql:
+    cmds:
+      - export TEST_URL=http://localhost:8001/graph && poetry run pytest
+  gqlgen:
+    cmds:
+      - export TEST_URL=http://localhost:8002/graph && poetry run pytest
+  mercurius:
+    cmds:
+      - export TEST_URL=http://localhost:8003/graph && poetry run pytest

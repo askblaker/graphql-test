@@ -1,0 +1,3 @@
+{
+    "query": "query { getFakePersons { id number name } }"
+}

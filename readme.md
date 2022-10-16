@@ -1,0 +1,41 @@
+# Graphql library testing
+
+Testing DX and "performance" of different languages and libraries.
+
+Using [taskfile](https://taskfile.dev), install it and run `task`.
+
+| Language  | Library       | Build/Install (s) | Hot reload (s) |  RPS |  kbps | 99% (ms) fake | 99% (ms) store |
+| :-------- | :------------ | ----------------: | -------------: | ---: | ----: | ------------: | -------------: |
+| Python    | Ariadne       |                 7 |              1 |   60 |  2400 |           190 |            285 |
+| Rust      | async-graphql |                55 |              4 | 1200 | 45000 |             4 |             80 |
+| Go        | gqlgen        |               120 |              1 |  640 | 25600 |            42 |             34 |
+| Javscript | mercurius     |                 3 |              1 |  305 | 12800 |            76 |             44 |
+
+Disclaimer: This is probably all incorrect. Do not use for anything.
+
+# Graphql Schema
+
+```graphql
+type Query {
+  getString: String
+  getStaticNumber: Int
+  getPersons: [Person]!
+  getFakePersons: [Person]!
+}
+
+type Mutation {
+  addPerson(input: PersonInput!): Person
+  itsTrue(number: Int): Boolean
+}
+
+type Person {
+  name: String
+  number: Int
+  id: String
+}
+
+input PersonInput {
+  name: String!
+  number: Int!
+}
+```

@@ -1,0 +1,27 @@
+version: "3"
+
+tasks:
+  lint:
+    cmds:
+      - revive
+  format:
+    cmds:
+      - go fmt
+  build:
+    cmds:
+      - go build
+  generate:
+    cmds:
+      - go run github.com/99designs/gqlgen generate.
+  dev:
+    cmds:
+      - air go run server.go
+  run:
+    cmds:
+      - go run server.go
+  setup:
+    cmds:
+      - wget https://go.dev/dl/go1.19.2.linux-amd64.tar.gz
+      #- sudo rm -rf /usr/local/go # Only do this if you want to update a previous install
+      - go install github.com/mgechev/revive@latest
+      - sudo tar -C /usr/local -xzf go1.19.2.linux-amd64.tar.gz

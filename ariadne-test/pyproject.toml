@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "ariadne-test"
+version = "0.1.0"
+description = ""
+authors = ["Audun Ask Blaker <audun@askblaker.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+ariadne = "^0.16.1"
+uvicorn = "^0.18.3"
+fastapi = {extras = ["uvicorn"], version = "^0.85.0"}
+black = "^22.10.0"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^5.0.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

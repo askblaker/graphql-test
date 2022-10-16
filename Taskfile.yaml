@@ -1,0 +1,75 @@
+version: "3"
+
+includes:
+  ariadne:
+    taskfile: ./ariadne-test/Taskfile.yaml
+    dir: ./ariadne-test
+  async-graphql:
+    taskfile: ./async-graphql-test/Taskfile.yaml
+    dir: ./async-graphql-test
+  mercurius:
+    taskfile: ./mercurius-test/Taskfile.yaml
+    dir: ./mercurius-test
+  gqlgen:
+    taskfile: ./gqlgen-test/Taskfile.yaml
+    dir: ./gqlgen-test
+  pytest:
+    taskfile: ./pytest-test/Taskfile.yaml
+    dir: ./pytest-test
+
+tasks:
+  default:
+    cmds:
+      - task --list-all
+
+  install-ci:
+    cmds:
+      - task ariadne:setup
+      - task async-graphql:setup
+      - task gqlgen:setup
+      - task mercurius:setup
+
+  ci:
+    cmds:
+      - task ariadne:install
+      - task ariadne:lint
+      - task ariadne:format
+
+      - task async-graphql:lint
+      - task async-graphql:format
+      - task async-graphql:build
+
+      - task gqlgen:lint
+      - task gqlgen:format
+      - task gqlgen:build
+
+      - task mercurius:install
+      - task mercurius:lint
+      - task mercurius:format
+
+      - task pytest:install
+      - task pytest:lint
+      - task pytest:format
+
+  citest:
+    - ./test.sh
+
+  perftest:ariadne:
+    - ab -n 2000 -c 10 -T 'application/json' -p ./query_fake.json http://localhost:8000/graph
+    - ab -n 1000 -c 10 -T 'application/json' -p ./payload.json http://localhost:8000/graph
+    - ab -n 2000 -c 10 -T 'application/json' -p ./query.json http://localhost:8000/graph
+
+  perftest:async-graphql:
+    - ab -n 2000 -c 10 -T 'application/json' -p ./query_fake.json http://localhost:8001/graph
+    - ab -n 1000 -c 10 -T 'application/json' -p ./payload.json http://localhost:8001/graph
+    - ab -n 2000 -c 10 -T 'application/json' -p ./query.json http://localhost:8001/graph
+
+  perftest:gqlgen:
+    - ab -n 2000 -c 10 -T 'application/json' -p ./query_fake.json http://localhost:8002/graph
+    - ab -n 1000 -c 10 -T 'application/json' -p ./payload.json http://localhost:8002/graph
+    - ab -n 2000 -c 10 -T 'application/json' -p ./query.json http://localhost:8002/graph
+
+  perftest:mercurius:
+    - ab -n 2000 -c 10 -T 'application/json' -p ./query_fake.json http://localhost:8003/graph
+    - ab -n 1000 -c 10 -T 'application/json' -p ./payload.json http://localhost:8003/graph
+    - ab -n 2000 -c 10 -T 'application/json' -p ./query.json http://localhost:8003/graph

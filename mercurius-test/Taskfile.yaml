@@ -1,0 +1,22 @@
+version: "3"
+
+tasks:
+  install:
+    cmds:
+      - npm i
+  lint:
+    cmds:
+      - npx eslint .
+  format:
+    cmds:
+      - npx prettier -c .
+  dev:
+    cmds:
+      - npx ts-node-dev ./src/main.ts
+  run:
+    cmds:
+      - npx ts-node ./src/main.ts
+  setup:
+    cmds:
+      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+      - bash -c ". ~/.nvm/nvm.sh && nvm install 16"

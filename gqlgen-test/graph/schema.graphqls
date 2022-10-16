@@ -1,0 +1,26 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Query {
+  getString: String
+  getNumber: Int
+  getPersons: [Person]!
+  getFakePersons: [Person]!
+}
+
+type Mutation {
+  addPerson(input: PersonInput!): Person
+  itsTrue(number: Int): Boolean
+}
+
+type Person {
+  name: String
+  number: Int
+  id: String
+}
+
+input PersonInput {
+  name: String!
+  number: Int!
+}
