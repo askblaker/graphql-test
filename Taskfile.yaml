@@ -4,6 +4,9 @@ includes:
   ariadne:
     taskfile: ./ariadne-test/Taskfile.yaml
     dir: ./ariadne-test
+  strawberry:
+    taskfile: ./strawberry-test/Taskfile.yaml
+    dir: ./strawberry-test
   async-graphql:
     taskfile: ./async-graphql-test/Taskfile.yaml
     dir: ./async-graphql-test
@@ -25,6 +28,7 @@ tasks:
   install-ci:
     cmds:
       - task ariadne:setup
+      - task strawberry:setup
       - task async-graphql:setup
       - task gqlgen:setup
       - task mercurius:setup
@@ -34,6 +38,10 @@ tasks:
       - task ariadne:install
       - task ariadne:lint
       - task ariadne:format
+
+      - task strawberry:install
+      - task strawberry:lint
+      - task strawberry:format
 
       - task async-graphql:lint
       - task async-graphql:format
@@ -73,3 +81,8 @@ tasks:
     - ab -n 2000 -c 10 -T 'application/json' -p ./query_fake.json http://localhost:8003/graph
     - ab -n 1000 -c 10 -T 'application/json' -p ./payload.json http://localhost:8003/graph
     - ab -n 2000 -c 10 -T 'application/json' -p ./query.json http://localhost:8003/graph
+
+  perftest:strawberry:
+    - ab -n 2000 -c 10 -T 'application/json' -p ./query_fake.json http://localhost:8004/graph
+    - ab -n 1000 -c 10 -T 'application/json' -p ./payload.json http://localhost:8004/graph
+    - ab -n 2000 -c 10 -T 'application/json' -p ./query.json http://localhost:8004/graph
