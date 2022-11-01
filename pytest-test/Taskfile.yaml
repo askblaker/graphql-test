@@ -28,3 +28,6 @@ tasks:
   mercurius:
     cmds:
       - export TEST_URL=http://localhost:8003/graph && poetry run pytest
+  strawberry:
+    cmds:
+      - export TEST_URL=http://localhost:8004/graph && poetry run pytest

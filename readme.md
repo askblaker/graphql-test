@@ -4,12 +4,13 @@ Testing DX and "performance" of different languages and libraries.
 
 Using [taskfile](https://taskfile.dev), install it and run `task`.
 
-| Language  | Library       | Build/Install (s) | Hot reload (s) |  RPS |  kbps | 99% (ms) fake | 99% (ms) store |
-| :-------- | :------------ | ----------------: | -------------: | ---: | ----: | ------------: | -------------: |
-| Python    | Ariadne       |                 7 |              1 |   60 |  2400 |           190 |            285 |
-| Rust      | async-graphql |                55 |              4 | 1200 | 45000 |             4 |             80 |
-| Go        | gqlgen        |               120 |              1 |  640 | 25600 |            42 |             34 |
-| Javscript | mercurius     |                 3 |              1 |  305 | 12800 |            76 |             44 |
+| Language  | Library                                                         | Build/Install (s) | Hot reload (s) |  RPS |  kbps | 99% (ms) fake | 99% (ms) store |
+| :-------- | :-------------------------------------------------------------- | ----------------: | -------------: | ---: | ----: | ------------: | -------------: |
+| Python    | [Ariadne](https://ariadnegraphql.org/)                          |                 7 |              1 |   60 |  2400 |           190 |            285 |
+| Python    | [Strawberry](https://strawberry.rocks/)                         |                 7 |              1 |   50 |  1800 |           340 |            340 |
+| Rust      | [async-graphql](https://github.com/async-graphql/async-graphql) |                55 |              4 | 1200 | 45000 |             4 |             80 |
+| Go        | [gqlgen](https://github.com/99designs/gqlgen)                   |               120 |              1 |  640 | 25600 |            42 |             34 |
+| Javscript | [mercurius](https://mercurius.dev/#/)                           |                 3 |              1 |  305 | 12800 |            76 |             44 |
 
 Disclaimer: This is probably all incorrect. Do not use for anything.
 

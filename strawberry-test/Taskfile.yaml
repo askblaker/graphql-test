@@ -15,7 +15,7 @@ tasks:
       - poetry run uvicorn src.main:app --reload --log-level debug
   run:
     cmds:
-      - poetry run uvicorn src.main:app --no-access-log
+      - poetry run uvicorn src.main:app --port 8004 --no-access-log
   setup:
     cmds:
       - curl -sSL https://install.python-poetry.org | python3 -
